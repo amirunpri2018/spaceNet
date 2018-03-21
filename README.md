@@ -5,13 +5,16 @@ Latent space models for binary multivariate networks (multiplex). The general mo
 
 <br>
 To install the development version from GitHub:
+
 ```
 # install.packages("devtools")
 devtools::install_github("michaelfop/spaceNet")
 ```
 
 <br>
+
 ### References
+
 D'Angelo, S., Murphy, T. B., Alfò, M. (2018).<br>
 **Latent space modeling of multidimensional networks with application to the exchange of votes in Eurovision Song Contest**.<br>
 *arXiv:1803.07166*.
