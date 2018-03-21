@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\\name{internal-functions}\n\\alias{startZ}\n\\alias{startLogit}\n\\alias{startSend}\n\\alias{startRec}\n\\alias{startLambda}\n\\alias{showTrace}\n\\alias{list2array}\n\\alias{sigmaFC}\n\\alias{muFc}\n\\alias{alphaBetaProp_k}\n\\alias{zProp_i}\n\\alias{lambdaProp_l}\n\\alias{gammaThetaProp_i}\n\\alias{logPosterior}\n\\alias{loglik}\n\n\n\\title{\nInternal \\code{spaceNet} functions\n}\n\\description{\nInternal functions not to be called by the user.\n}\n\n\\keyword{internal}\n",
+    "created" : 1520421276786.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3976033691",
+    "id" : "26D2C9FF",
+    "lastKnownWriteTime" : 1520413821,
+    "last_content_update" : 1520413821,
+    "path" : "C:/Users/Antonio/Downloads/spaceNet/spaceNet/man/internal-functions.Rd",
+    "project_path" : "man/internal-functions.Rd",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_doc"
+}

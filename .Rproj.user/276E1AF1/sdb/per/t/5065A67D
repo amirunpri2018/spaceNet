@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: spaceNet\nVersion: 1.0\nDate: 2018-03-01\nTitle: Latent Space Models for Multivariate Networks\nDescription: Latent space model for binary multidimensional networks.\nAuthors@R: c( person(\"Silvia\", \"D\\'Angelo\", role = c(\"aut\", \"cre\"), \n           email = \"silvia.dangelo@uniroma1.it\"), \n\t         person(\"Michael\", \"Fop\", role = \"aut\"),\n\t         person(\"Marco\", \"Alfò\", role = \"ctb\"), \n\t         person(\"Thomas Brendan\", \"Murphy\", role = \"ctb\")\n\t         )\nMantainer: Silvia D\\'Angelo <silvia.dangelo@uniroma1.it>\nImports: MASS, permute, RcppTN, Rfast, sna, vegan\nDepends: R (>= 3.0)\nLicense: GPL (>= 2)\nEncoding: UTF-8\nByteCompile: true\nLazyData: true\n\n",
+    "created" : 1520421209792.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1828539104",
+    "id" : "5065A67D",
+    "lastKnownWriteTime" : 1520421233,
+    "last_content_update" : 1520421233921,
+    "path" : "C:/Users/Antonio/Downloads/spaceNet/spaceNet/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}

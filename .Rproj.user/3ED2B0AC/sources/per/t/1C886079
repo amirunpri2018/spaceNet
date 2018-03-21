@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1520599684098.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4230648420",
+    "id" : "1C886079",
+    "lastKnownWriteTime" : 1520599734,
+    "last_content_update" : 1520599734447,
+    "path" : "~/Dropbox/spaceNet_package/spaceNet/NAMESPACE",
+    "project_path" : "NAMESPACE",
+    "properties" : {
+        "cursorPosition" : "9,58",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_namespace"
+}

@@ -1,0 +1,119 @@
+\name{multiNet}
+\alias{multiNet}
+\alias{print.multiNet}
+\title{Latent Space Models for Multivariate Networks}
+
+\description{
+The function performs latent space modeling of binary multidimensional networks, with the model proposed in D'Angelo et al. (2018). The main assumption is that the nodes in the multidimensional network can be represented in a low-dimensional latent space, common to the whole multiplex. Edge probabilities are inveresely proportional to the distances between the nodes in the latent space, as in the model for single-networks proposed by Hoff et al. (2002). The function provides with the estimates of the nodes latent coordinates, as well as other network parameters. Edge-specific covariates can be included in the estimation procedure. At the moment, only covariates constant troughout the networks can be considered. The optimization is carried out via an mcmc procedure.
+}
+
+\usage{
+multiNet(Y, niter = 1000, D = 2,
+         muA = 0, tauA = NULL, nuA = 3,
+         muB = 0, tauB = NULL, nuB = 3,
+         muL = 0, tauL = NULL, nuL = 3,
+         alphaRef = 0.1,
+         covariates = NULL,
+         DIC = FALSE,
+         burnIn = round(niter*0.3),
+         trace = TRUE,
+         allChains = FALSE,
+         zTrue = NULL)
+}
+
+
+\arguments{
+\item{Y}{An array or a list with the adjacency matrices forming the multidimensional network. A list is automatically converted into an array to fit the model. The dimension of \code{Y} must be \code{(n,n,K)}, where \code{n} is the number of nodes and \code{K} the number of networks. Structural missing values (\code{NA}) are allowed but will not be imputed; missing values will be handled as in D'Angelo et al. (2018).}
+
+\item{niter}{The number of mcmc iterations. The default value is \code{niter = 1000}.}
+
+\item{D}{The dimension of the latent space, with \code{D > 0}. The default value is \code{D = 2}.}
+
+\item{muA, muB, muL}{The mean parameters of the prior distributions for the means of the prior distributions of, respectively, \code{alpha}, \code{beta} and, in case of covariates, \code{lambda} parameters.}
+
+\item{tauA, tauB, tauL}{The scale factors for the variances of the prior distributions for the means of the prior distributions of, respectively, \code{alpha}, \code{beta} and, in case of covariates, \code{lambda parameters}. If \code{NULL}, they will be computed as proposed in D'Angelo et al. (2018).}
+
+\item{nuA, nuB, nuL}{The degrees of freedom for the prior distributions of the variances of the prior distributions of, respectively, \code{alpha}, \code{beta} and, in case of covariates, \code{lambda parameters}.}
+
+\item{alphaRef}{The value for the intercept in the first network (the reference network), which must be fixed for model identifiability reasons. This value can be either specified by the user on the basis of any prior knowledge on the data or computed with the function \code{alphaRef}. The function implements the method proposed by D'Angelo et al. (2018) to compute the intercept in the reference network.}
+
+\item{covariates}{Optional. An array or a list with the edge-covariates matrices. A list is automatically converted in an array to fit the model. Covariates can be either continuous or discrete and must be constant troughout the networks. The dimension of \code{covariates} is  \code{(n,n,L)}, where \code{n} is the number of nodes and \code{L} the number of covariates, that is, the number of covariates matrices. Missing values (\code{NA}) are not allowed. The effect of the covariates is assumed to be inversely related to the edge probabilities.}
+
+\item{DIC}{A logical value indicating wether the DIC (Deviance Information Criterion) should be computed (\code{DIC = TRUE}). The default is \code{DIC = FALSE}. The Deviance Information Criterion is a criterion for model selection and enables the comparison of different estimated models.}
+
+\item{burnIn}{A numerical value, indicating the number of iterations of the chain to be discarded when computing the posterior estimates. The default value is \code{burnIn= round(niter/3)}.}
+
+\item{trace}{A logical value indicating if the current iterations should be printed. The default value is \code{trace = TRUE}.}
+
+\item{allChains}{A logical value indicating what kind of output should be returned. The default value is \code{allChains = FALSE} and corresponds to a synthetic output, where only the posterior estimates of the parameters, their standard deviations and the acceptance ratios are returned. When \code{allChains = TRUE} also the parameters chains are returned.}
+
+\item{zTrue}{Optional. A matrix containg a set of reference values for the latent coordinates of the nodes. Its dimension must be \code{(n, D)}, where \code{n} is the number of nodes and \code{D} the number of dimensions of the latent space. The coordinates stored in the matrix \code{zTrue} are compared with the estimated ones at each iteration, via Procrustes correlation. High values of the correlation index indicate that the estimated coordinates come from a translation and/or a rotation of the coordinates in \code{zTrue}. }
+
+}
+
+
+\value{
+An object of class \code{'multiNet'} containing the following components:
+\item{parameters}{A list with the estimates of the means and the standard deviations of the posterior distributions for the parameters.}
+\item{K}{A numerical value. It corresponds to the number of networks in the multidimensional network.}
+\item{D}{A numerical value. It corresponds to the number of dimensions of the estimated latent space.}
+\item{n}{A numerical value. It corresponds to the number of nodes in the multidimensional network.}
+\item{latPos}{A list with the estimates of the means and the standard deviations of the posterior distributions for the latent coordinates.}
+\item{accRates}{A list containing the acceptance ratios of the candidate parameters and the candidate latent coordinates.}
+\item{DIC}{If \code{DIC = TRUE}, it returns a numeric value corresponding to the Deviance Information Criterion of the estimated model.}
+\item{allChains}{If \code{Allchains = TRUE}, it returns a list with the estimated posterior distributions of the model parameters.}
+\item{corrRefSpace}{When a reference set of latent coordinates is specified (\code{zTrue}), it returns a numerical vector containg the values of the Procrustes correlation between the reference space and the estimated one, at each mcmc iteration.}
+\item{info}{A list with some information on the estimated model: "call" is the name given to the output of \code{multiNet}, "niter" is the number of mcmc iterations, "burnIn" is the number of initial iterations to discard when computing the estimates, "covariates" is the covariates array, if present, and "nC" is the number of covariates.  }
+}
+
+\details{ %%%to do
+This function estimates the latent space model for multidimensional networks proposed in D'Angelo et al. (2018). The nodes are assumed to lie in a D-dimensional latent space and the distances between them influence the edge probabilities. More specifically, the probability that the couple of nodes \eqn{(i,j)} is joined by an edge in inversely related to their distance in the latent space. This distance is the squared Euclidean distance.
+Also, each network is characterized by a couple of network-specific parameters, capturing its connectivity and scaling the distances in the latent space: \eqn{\Omega^{(k)} = (\alpha^{(k)},\beta^{(k)}) }{\Omega_k = (\alpha_k, \beta_k)}.
+The probability of an edge between nodes \eqn{i}{i} and \eqn{j}{j} in network \eqn{k}{k} is:
+\deqn{
+ P \Bigl( y_{ij}^{(k)} = 1 | \Omega^{(k)} , d_{ij}\Bigr)=
+\frac{ a_{ij}^{(k)} }{1 +  a_{ij}^{(k)} }.}{
+P (y_{ijk} |\Omega_k , d_{ij} ) =  a_{ijk} / (1+a_{ijk}).}
+
+with \eqn{a_{ij}^{(k)} = \exp{\alpha^{(k)}-\beta^{(k)} d_{ij}}}{a_{ijk} = exp( \alpha_k -\beta_k*d_{ij})}.
+All the model parameters are estimated with an mcmc alogrithm, for further details see D'Angelo et al. (2018).
+
+Edge-specific covariates can be either discrete or continuous and they must be constant over the networks. Furthermore, no missing value is allowed and covariates are assumed to be inversely related to edge probabilities, for model identifiability reasons. This last issue could be often overcomed defining models with different riparametrizations of the covariate matrices, that could then be compared with the Deviance Information Criterion.
+
+\code{tauA, taub} and \code{tauL} are the scale parameters for the variances of the prior distributions on the means of the prior distributions of the model parameters. If not specified by the user, they are computed as \eqn{tauA = tauB = (K-1)/K }{tauA = tauB = (K-1)/K } and, in case of covariates, \eqn{tauL = (L-1)/L}{tauL = (L-1)/L} (if \eqn{L=1}{L=1}, \eqn{tauL = 0.5}{tauL = 0.5}), see D'Angelo et al. (2018).
+
+}
+%\author{Silvia D'Angelo, Michael Fop}
+
+
+\examples{
+\dontrun{
+### Example: Vickers data
+library(spaceNet)
+load(vickers)
+
+## 2-dimensional latent space model, with no covariates
+
+mod <- multiNet(vickers, niter = 1000, D = 2,
+                alphaRef = alphaRef( vickers, 2)
+)
+
+## 2-dimensional latent space model, with covariates
+
+mod <- multiNet(vickers, niter = 1000, D = 2,
+                alphaRef = alphaRef( vickers, 2),
+                covariates = sex
+)
+}
+}
+
+\references{
+D'Angelo, S. and Murphy, T. B. and Alfò, M. (2018). Latent space modeling of multidimensional networks with application to the exchange of votes in the Eurovision
+Song Contest. \emph{arxiv}
+
+Hoff, P. D. and Raftery, A. E. and Handcock, M. S. (2002). Latent space approaches to social network analysis. \emph{Journal of the American Statistical Association}, 97 (460). 1090-1098.
+}
+
+\seealso{
+\code{\link{alphaRef}}
+}

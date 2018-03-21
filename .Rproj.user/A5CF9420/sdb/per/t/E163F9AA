@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "x <- array( rnorm(50*50*4), c(50,50,4) )\n\na <- apply(x, c(1,2), sum)\nb <- matrix( vapply( 2:4, function(nc) {\n  tmp <- x[,,nc-1]\n  tmp + x[,,nc]}, double(50*50) ), 50, 50 )\na-b\n\nmicrobenchmark(\n  {\n    apply(lambdaCov, 1:2, sum)\n  },\n  {\n    tt <- c(lambdaCov)\n    tt[1:(21*21)] + tt[(21*21+1):(21*21*2)]\n  }\n  , times = 100\n) -> b; print(b); boxplot(b)\n\n\n",
+    "created" : 1508499513263.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "300044906",
+    "id" : "E163F9AA",
+    "lastKnownWriteTime" : 1508526262,
+    "last_content_update" : 1508526262139,
+    "path" : "~/Dropbox/spaceNet_package/benchmark.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

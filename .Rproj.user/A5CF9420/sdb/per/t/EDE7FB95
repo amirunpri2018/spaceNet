@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#\n#============== Set of functions for full conditionals and proposal distributions\n#\n\n\nsigmaFc <- function(par, mu, nu, tau)\n  # Full conditional for sigmaAlpha and sigmaBeta\n{\n  # sh <- (nu + K-1 + 1)/2\n  # sc <- ( tau * ( 1 + sum((par - mu)^2) ) + mu^2 ) / (2*tau)\n  sigmaNew <- 1/rgamma( 1, shape = (nu + K-1 + 1)/2,\n                        scale = ( tau * ( 1 + sum((par - mu)^2) ) + mu^2 ) / (2*tau) )\n  return(sigmaNew)\n}\n\n\nmuFc <- function(par, sigma, tau, mu, lBound, uBound)\n  # Full conditional for muAlpha and muBeta\n{\n  den <- 1 + tau*(K-1)\n  # muMean <- (tau * sum(par) + mu) / den\n  # muSd <- sqrt( (tau*sigma)/den )\n  muNew <- RcppTN::rtn(.mean = (tau * sum(par) + mu) / den,\n                       .sd =   sqrt( (tau*sigma)/den ),\n                       .low = lBound, .high = uBound)\n  return(muNew)\n}\n\n\nalphaProp_k <- function(k, Y, n, arcSumY, beta, gamma, theta, distZ, muAlpha, sigmaAlpha,\n                        boundA, lambdaCovSum, nC, nodeInd, noSendRec)\n  # Proposal for intercept parameter for each view\n{\n  gt <- matrix(gamma, n,n, byrow = TRUE) * theta\n  diag(gt) <- 0\n  arg <- muAlpha*gt - beta[k]*distZ - lambdaCovSum   # if no covariates, lambdaCovSum = 0\n  Ek <- if ( noSendRec ) arcSumY[k] else sum( Y*gt )\n\n  expArg <- exp(arg)\n  t1 <- expArg / ( (1 + expArg)*(1 + expArg) ) * (gt*gt)\n  t2 <- expArg / (1 + expArg) * gt\n  diag(t1) <- diag(t2) <- 0\n\n  varAlphaNew_k <- 1/( sum(m1) + 1/sigmaAlpha )\n  meanAlphaNew_k <- varAlphaNew_k + n/200\n  alphaNew_k <-\n    RcppTN::rtn(.mean = meanAlphaNew_k, .sd = sqrt(varAlphaNew_k),\n                .low = boundA, .checks = FALSE)\n\n  return( list(alphaNew_k = alphaNew_k, meanAlphaNew_k = meanAlphaNew_k,\n               varAlphaNew_k = varAlphaNew_k) )\n}\n\nlapply( 2:K, function(k) {\n  alphaProp_k(k, Y[,,k], n, arcSumY, beta[k], gamma[,k], theta[,k], distZ,\n              muAlpha, sigmaAlpha, boundA, lambdaCov, nC, 1, TRUE)\n  } )\n",
+    "created" : 1508510640118.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3985091583",
+    "id" : "EDE7FB95",
+    "lastKnownWriteTime" : 1508525610,
+    "last_content_update" : 1508525610815,
+    "path" : "~/Dropbox/spaceNet_package/spaceNet/R/proposals.R",
+    "project_path" : "R/proposals.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

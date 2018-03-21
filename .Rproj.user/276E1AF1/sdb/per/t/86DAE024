@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\\name{vickers}\n\\alias{vickers}\n\\title{Vickers-Chan 7th graders multidimensional network}\n\n\\description{\nThe data by Vickers et al. (1981) represent three different social relations among 29 seventh grade students in a school in Victoria, Australia. A binary covariate matrix is available and it describes if two students share the same sex or not.\n}\n\n\\usage{\nload(vickers)\n}\n\n\n\\details{\nThe data by Vickers et al. (1981) are stored in a list named \\code{vickers} and represent three different social relations among 29 seventh grade students, 12 boys and 17 girls, in a school in Victoria, Australia. Each student was asked if\n\\itemize{\n\\item{\\emph{Network 1}: he\\ she got on with another given student;}\n\\item{\\emph{Network 2}: he\\ she considered another given student as his\\ her best friend;}\n\\item{\\emph{Network 3}: he\\ she would have liked to work with another given student.}\n}\nThe matrix \\code{sex} is an edge-specific binary covariate concerning the gender of pairs of students. If a pair of students is of the same sex, the corresponding entry in the matrix is 0, otherwise is 1.\n}\n\n\\references{\nVickers, M. and Chan, S. (1981). Representing Classroom Social Structure. \\emph{Melbourne: Victoria Institue of Secondary Education.}\n}\n\n\\examples{\n\\dontrun{\n### Example: Vickers data\nlibrary(spaceNet)\ndata(vickers)\n\n\n}\n}\n",
+    "created" : 1520421061618.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4262365693",
+    "id" : "86DAE024",
+    "lastKnownWriteTime" : 1520421187,
+    "last_content_update" : 1520421187441,
+    "path" : "C:/Users/Antonio/Downloads/spaceNet/spaceNet/man/vickers.Rd",
+    "project_path" : "man/vickers.Rd",
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_doc"
+}

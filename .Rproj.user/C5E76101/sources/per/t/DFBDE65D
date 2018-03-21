@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1521153844614.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1367513000",
+    "id" : "DFBDE65D",
+    "lastKnownWriteTime" : 1520177932,
+    "last_content_update" : 1520177932,
+    "path" : "~/Dropbox/spaceNet_package/spaceNet/R/proposals.R",
+    "project_path" : "R/proposals.R",
+    "properties" : {
+        "cursorPosition" : "115,0",
+        "scrollLine" : "175"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

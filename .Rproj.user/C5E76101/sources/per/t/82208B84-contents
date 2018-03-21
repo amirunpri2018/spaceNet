@@ -1,0 +1,18 @@
+Package: spaceNet
+Version: 1.0
+Date: 2018-03-01
+Title: Latent Space Models for Multidimensional Networks
+Description: The package provides with a function to fit latent space models for binary multivariate networks via an MCMC algorithm. 
+Authors@R: c( person("Silvia", "D\'Angelo", role = c("aut", "cre"), 
+           email = "silvia.dangelo@uniroma1.it"), 
+	         person("Michael", "Fop", role = "aut"),
+	         person("Marco", "Alfò", role = "ctb"), 
+	         person("Thomas Brendan", "Murphy", role = "ctb")
+	         )
+Mantainer: Silvia D\'Angelo <silvia.dangelo@uniroma1.it>
+Imports: MASS, permute, RcppTN, Rfast, sna, vegan
+Depends: R (>= 3.0)
+License: GPL (>= 2)
+Encoding: UTF-8
+ByteCompile: true
+LazyData: true

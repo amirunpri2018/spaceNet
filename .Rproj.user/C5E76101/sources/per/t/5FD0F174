@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1521153841472.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3716103178",
+    "id" : "5FD0F174",
+    "lastKnownWriteTime" : 1519843508,
+    "last_content_update" : 1519843508,
+    "path" : "~/Dropbox/spaceNet_package/spaceNet/R/logPosterior.R",
+    "project_path" : "R/logPosterior.R",
+    "properties" : {
+        "cursorPosition" : "67,37",
+        "scrollLine" : "64"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

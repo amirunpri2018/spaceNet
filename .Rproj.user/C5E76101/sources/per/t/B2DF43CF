@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1521152427977.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1065937387",
+    "id" : "B2DF43CF",
+    "lastKnownWriteTime" : 1521154034,
+    "last_content_update" : 1521154034853,
+    "path" : "~/Dropbox/spaceNet_package/spaceNet/man/spaceNet.Rd",
+    "project_path" : "man/spaceNet.Rd",
+    "properties" : {
+        "cursorPosition" : "41,0",
+        "scrollLine" : "33"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_doc"
+}

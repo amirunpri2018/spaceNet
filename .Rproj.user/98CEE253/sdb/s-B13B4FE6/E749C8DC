@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: spaceNet\nVersion: 1.0\nDate: 2018-03-01\nTitle: Latent Space Models for Multivariate Networks\nDescription: Latent space modeling of binary multidimensional networks.The implemented model is described in D'Angelo et al. (2018) and is based on the assumption that nodes in the multidimensional network can be represented in a low-dimensional latent space, as in Hoff, P.D. et al. (2002). Edge probabilities are an inverse function of the distances among the nodes in the latent space. Structural missing values and edge-specific covariates can be included in the model.\nAuthors@R: c( person(\"Silvia\", \"D\\'Angelo\", role = c(\"aut\", \"cre\"), \n           email = \"silvia.dangelo@uniroma1.it\"), \n\t         person(\"Michael\", \"Fop\", role = \"aut\") )\nMantainer: Silvia D\\'Angelo <silvia.dangelo@uniroma1.it>\nImports: MASS, permute, RcppTN, Rfast, sna, vegan\nDepends: R (>= 3.0)\nLicense: GPL (>= 2)\nEncoding: UTF-8\nByteCompile: true\nLazyData: true\n\n",
+    "created" : 1520258066086.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1867165353",
+    "id" : "E749C8DC",
+    "lastKnownWriteTime" : 1520325854,
+    "last_content_update" : 1520325854,
+    "path" : "C:/Users/Silvia/Downloads/spaceNet/spaceNet/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}

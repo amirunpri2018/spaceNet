@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "source(\"../sim_functions.R\")\nsource(\"../utility_functions.R\")\nsource(\"../main_function.R\")\n#\n# require(vegan)\n# require(geoR)\n# require(mnormt)\n# require(MASS)\n# require(truncnorm)\n# require(sna)\n# require(matrixcalc)\n# require(igraph)\n#\nlayK = read.table(\"../Krackhardt-High-Tech_layers.txt\")\nnodeK = read.table(\"../Krackhardt-High-Tech_nodes.txt\", header = TRUE)\nedgeK = read.table(\"../Krackhardt-High-Tech_multiplex.edges\")\n\nY = array(0, c(21,21, 3))\nYL <- list()\nK = length(levels(as.factor(edgeK[,1])))\nn = 21\n\nfor( k in 1:K){\n  rete = which(edgeK[,1] == k)\n  adj.mat = matrix(0, n, n)\n  for(i in 1: length(rete)){\n    da = edgeK[i,2]\n    a = edgeK[i,3]\n    adj.mat[da,a] =1\n  }\n  Y[,,k] = adj.mat\n  YL[[k]] <- adj.mat\n}\n#\n# rm( list = setdiff(ls(), c(\"highTechNet\", \"nodeInfo\")) )\n#\n# save.image(\"data/highTech.rda\")\n\ncovariates <- array(sample(1:10000, 21*21*3), c(21,21,3))\n\n\n\n\nlibrary(spaceNet)\ndata(\"highTech\")\n\nYL <- list(Y[,,1], Y[,,2], Y[,,3])\n\n\n\nnode.index = lapply(YL, node.index.Y)\nniter = 40\nD = 2\nnuA = nuB = 3\nmuA = muB = 0\ntauA = tauB = (K-1)/K\nreceiver = sender = NULL\ncontrolZ = FALSE\nztrue = rep(1, D)\nmod = LsmMN( Y, niter, D, nuA, nuB, tauA, tauB, muA, muB,\n                   node.index, receiver, sender, controlZ,\n                   ztrue, gamma.0=1, theta.0=1,\n                   alpha.0 = 0, covariates = 1)\n\n\n\n\n####proc z\nzpost1 <- list()\nfor ( i in 1 : n ){\n  z1 <- unlist( lapply( mod$Save.z , function( x) x[ i,1 ]))\n  z2 <- unlist( lapply( mod$Save.z , function( x) x[ i,2]))\n  zpost1[[i]] <- cbind( z1, z2)\n}\nburn = 20\nz_stim<- matrix( unlist( lapply(zpost1 ,\n                               function( x) cbind( mean(x[ burn  , 1  ] ) ,\n                                                   mean(x[ burn , 2  ])) ) ) ,\n                byrow = T , ncol=2)\n\nmod2 = LsmMN( Y, niter, D, nuA, nuB, tauA, tauB, muA, muB,\n             node.index, receiver, sender, TRUE,\n             z_stim, gamma.0=1, theta.0=1,\n             alpha.0 = 0, covariates = 1)\n\n\nplot(mod2$corrz)\n",
+    "created" : 1508509970254.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4014417961",
+    "id" : "42608011",
+    "lastKnownWriteTime" : 1508513053,
+    "last_content_update" : 1508513053546,
+    "path" : "~/Dropbox/spaceNet_package/example.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
