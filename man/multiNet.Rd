@@ -133,19 +133,19 @@ Missing data are considered structural and correspond to edges missing because o
 
 
 \examples{
-\dontrun{
 data(vickers)
 alphaR <- alphaRef(vickers, D = 2)  # compute alpha reference value
 
+it <- 10     # small number of iterations just for example
+
 # 2-dimensional latent space model, no covariates
-mod <- multiNet(vickers, niter = 1000, D = 2,
+mod <- multiNet(vickers, niter = it, D = 2,
                 alphaRef = alphaR)
 
 # 2-dimensional latent space model, sex as covariate
-mod <- multiNet(vickers, niter = 1000, D = 2,
+mod <- multiNet(vickers, niter = it, D = 2,
                 alphaRef = alphaR,
                 covariates = sex)
-}
 }
 
 \references{

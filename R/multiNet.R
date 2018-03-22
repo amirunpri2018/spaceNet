@@ -703,7 +703,7 @@ print.multiNet <- function(x, ...)
   # theta <- x$parameters$theta$mean
   lambda <- x$parameters$lambda$mean
   dic <- x$DIC
-  nC <- x$info$nC
+  nC <- x$info$L
 
   if ( is.null(nC) ) {
     h1 <- paste(x$D, "dimensional latent space model")
@@ -719,7 +719,7 @@ print.multiNet <- function(x, ...)
           paste(round(beta[k], 2), "dZ", sep = "*"), "\n")
     }
   } else {
-    covs <- paste0("X", 1:x$info$nC)
+    covs <- paste0("X", 1:nC)
     h1 <- paste("    ", x$D, "dimensional latent space model")
     h2 <- "for multivariate networks, with covariates"
     sep <- paste0( rep("=", max(nchar(h1), nchar(h2)) + 5), collapse = "" )
