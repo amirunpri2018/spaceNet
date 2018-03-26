@@ -1,6 +1,6 @@
 Package: spaceNet
-Version: 1.0
-Date: 2018-03-21
+Version: 1.0.1
+Date: 2018-03-26
 Title: Latent Space Models for Multidimensional Networks
 Description: Latent space models for multivariate networks (multiplex) estimated via MCMC algorithm. See D Angelo et al. (2018) <arXiv:1803.07166>.
 Authors@R: c( person("Silvia", "D'Angelo", role = c("aut", "cre"), 
