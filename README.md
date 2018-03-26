@@ -5,6 +5,7 @@ Latent space models for binary multivariate networks (multiplex). The general mo
 
 <br>
 The package is available on CRAN, to install it:
+
 ```
 install.packages("spaceNet")
 ```
