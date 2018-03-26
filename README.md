@@ -4,6 +4,11 @@
 Latent space models for binary multivariate networks (multiplex). The general model assumes that the nodes in the multiplex lie in a low-dimensional latent space. The probability of two nodes being connected is inversely related to their distance in this latent space: nodes close in the space are more likely to be linked, while nodes that are far apart are less likely to be connected. The model is defined in a hierarchical Bayesian framework and estimation is carried out via MCMC algorithm.
 
 <br>
+The package is available on CRAN, to install it:
+```
+install.packages("spaceNet")
+```
+
 To install the development version from GitHub:
 
 ```
